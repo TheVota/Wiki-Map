@@ -6,6 +6,10 @@ Wiki Map is a Chrome extension that visualizes your Wikipedia browsing path as a
 
 When you click links between Wikipedia articles, the extension records which page led to which page and displays the navigation history in a resizable side panel. The map grows vertically, supports drag-to-pan navigation, and includes light and dark modes.
 
+### Example
+
+![Wiki Map example](docs/wiki-map-example.png)
+
 ### Features
 
 - Track Wikipedia article-to-article navigation automatically
@@ -58,6 +62,10 @@ This extension is not published on the Chrome Web Store yet. Install it as an un
 Wiki Mapは、Wikipediaでのページ移動をマインドマップとして可視化するChrome拡張機能です。
 
 Wikipediaの記事内リンクをクリックすると、どのページからどのページへ移動したかを記録し、右側のリサイズ可能なサイドパネルに表示します。マップは縦方向に伸び、ドラッグによる表示範囲の移動やライトモード / ダークモードの切り替えに対応しています。
+
+### 表示例
+
+![Wiki Mapの表示例](docs/wiki-map-example.png)
 
 ### 機能
 
