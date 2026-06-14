@@ -1,0 +1,277 @@
+#wiki-map-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2147483647;
+  display: block;
+  height: 100vh;
+  color: #202122;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  pointer-events: none;
+}
+
+#wiki-map-panel * {
+  box-sizing: border-box;
+}
+
+.wiki-map-resize {
+  position: absolute;
+  top: 0;
+  left: -7px;
+  z-index: 2;
+  width: 14px;
+  height: 100vh;
+  cursor: col-resize;
+  pointer-events: auto;
+}
+
+.wiki-map-resize-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #a2a9b1;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
+}
+
+.wiki-map-resize-grip::before {
+  position: absolute;
+  top: 9px;
+  left: 4px;
+  width: 2px;
+  height: 24px;
+  border-radius: 999px;
+  background: #72777d;
+  box-shadow: 4px 0 0 #72777d;
+  content: "";
+}
+
+#wiki-map-panel.wiki-map-collapsed .wiki-map-resize {
+  display: none;
+}
+
+.wiki-map-toggle {
+  position: absolute;
+  top: 72px;
+  left: -42px;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #a2a9b1;
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+  background: #fff;
+  color: #202122;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.wiki-map-body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  border-left: 1px solid #a2a9b1;
+  background: #fff;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.12);
+  pointer-events: auto;
+}
+
+#wiki-map-panel.wiki-map-collapsed .wiki-map-body {
+  display: none;
+}
+
+.wiki-map-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.wiki-map-title {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wiki-map-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.wiki-map-icon-button {
+  display: grid;
+  min-width: 48px;
+  height: 30px;
+  padding: 0 9px;
+  place-items: center;
+  border: 1px solid #a2a9b1;
+  border-radius: 6px;
+  background: #f8f9fa;
+  color: #202122;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.wiki-map-icon-button:hover {
+  background: #fff;
+  border-color: #72777d;
+}
+
+.wiki-map-canvas-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  cursor: grab;
+  background:
+    linear-gradient(#f1f3f5 1px, transparent 1px),
+    linear-gradient(90deg, #f1f3f5 1px, transparent 1px);
+  background-color: #fff;
+  background-size: 18px 18px;
+  user-select: none;
+}
+
+.wiki-map-canvas-wrap.is-dragging {
+  cursor: grabbing;
+}
+
+.wiki-map-empty {
+  padding: 16px;
+  color: #54595d;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.wiki-map-node rect {
+  fill: #fff;
+  stroke: #36c;
+  stroke-width: 1.5;
+}
+
+.wiki-map-node.is-current rect {
+  fill: #eaf3ff;
+  stroke: #36c;
+  stroke-width: 2;
+}
+
+.wiki-map-node text {
+  fill: #202122;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.wiki-map-edge {
+  fill: none;
+  stroke: #72777d;
+  stroke-width: 1.4;
+}
+
+.wiki-map-edge-label {
+  fill: #54595d;
+  font-size: 10px;
+}
+
+.wiki-map-footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-top: 1px solid #eaecf0;
+  color: #54595d;
+  font-size: 11px;
+}
+
+#wiki-map-panel[data-theme="dark"] {
+  color: #f8f9fa;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-toggle,
+#wiki-map-panel[data-theme="dark"] .wiki-map-body {
+  border-color: #54595d;
+  background: #202122;
+  color: #f8f9fa;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-header,
+#wiki-map-panel[data-theme="dark"] .wiki-map-footer {
+  border-color: #54595d;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-icon-button {
+  border-color: #72777d;
+  background: #2a2d31;
+  color: #f8f9fa;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-icon-button:hover {
+  background: #34383d;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-resize-grip {
+  border-color: #72777d;
+  background: #2a2d31;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-resize-grip::before {
+  background: #c8ccd1;
+  box-shadow: 4px 0 0 #c8ccd1;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-canvas-wrap {
+  background:
+    linear-gradient(#34383d 1px, transparent 1px),
+    linear-gradient(90deg, #34383d 1px, transparent 1px);
+  background-color: #202122;
+  background-size: 18px 18px;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-empty,
+#wiki-map-panel[data-theme="dark"] .wiki-map-footer,
+#wiki-map-panel[data-theme="dark"] .wiki-map-edge-label {
+  color: #c8ccd1;
+  fill: #c8ccd1;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-node rect {
+  fill: #2a2d31;
+  stroke: #6ea8fe;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-node.is-current rect {
+  fill: #183153;
+  stroke: #8ab4ff;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-node text {
+  fill: #f8f9fa;
+}
+
+#wiki-map-panel[data-theme="dark"] .wiki-map-edge {
+  stroke: #a2a9b1;
+}
+
+@media (max-width: 720px) {
+  #wiki-map-panel {
+    max-width: 94vw;
+  }
+}
